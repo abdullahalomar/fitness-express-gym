@@ -12,9 +12,13 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        
+        $members = Member::when($request->filled('search'),function($query) use($request){
+            $query->where('id','name','LIKE','%'.$request->search.'%')->orWhere('id','email','LIKE','%'.$request->search.'%');
+        })->get();
+        $members = Member::all();
+        return view('home')->with('members', $members);
     }
 
     /**
@@ -24,7 +28,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -35,7 +39,10 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        Member::create($request->post());
+        
+        return redirect('/')->with('success','Member has been added successfully.');
     }
 
     /**
@@ -46,7 +53,7 @@ class MemberController extends Controller
      */
     public function show(Member $member)
     {
-        //
+        return view('show', compact('member'));
     }
 
     /**

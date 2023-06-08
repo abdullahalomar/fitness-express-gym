@@ -23,4 +23,4 @@ Auth::routes();
 use App\Http\Controllers\PhotoController;
  
 Route::resource('/', MemberController::class);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
