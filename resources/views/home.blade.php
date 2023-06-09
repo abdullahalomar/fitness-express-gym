@@ -10,12 +10,24 @@
       <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
           <form action="{{ url('/') }}" class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success me-2"  type="submit">Search</button>
+            <a href="{{ url('/') }}" class="btn btn-outline-warning">Reset</a>
           </form>
         </div>
       </nav>
       {{-- search --}}
+      {{-- error message --}}
+      @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+      {{-- error message --}}
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -33,14 +45,14 @@
               @foreach ($members as $member)
               <tr>
                 <td>{{ $member->id }}</td>
-                <td><img src="/images/{{ $member->image }}" alt="Image" width="59px"></td>
+                <td><img src="{{Storage::url($member->image) }}" alt="Image" width="59px"></td>
                 <td>{{ $member->name }}</td>
                 <td>{{ $member->phone }}</td>
                 <td>{{ $member->detail }}</td>
                 <td><i class="fa-sharp fa-solid fa-bangladeshi-taka-sign"></i>{{ $member->payment }}</td>
 
                 <td>
-                  <a href="{{ url('/show' , $member->id) }}"><button class="btn btn-outline-primary"><i class="fa-solid fa-eye"></i> Show</button></a>
+                  <a href="{{ url('/member' , $member->id) }}"><button class="btn btn-outline-primary"><i class="fa-solid fa-eye"></i> Show</button></a>
                   <a href=""><button class="btn btn-outline-info"><i class="fa-solid fa-user-pen"></i> Edit</button></a>
                   <a href=""><button class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i> Delete</button></a>
                 </td>

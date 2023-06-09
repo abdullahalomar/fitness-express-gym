@@ -14,13 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
 use App\Http\Controllers\PhotoController;
  
-Route::resource('/', MemberController::class);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+Route::resource('member', MemberController::class);
+Route::get('/', [App\Http\Controllers\MemberController::class, 'index']);

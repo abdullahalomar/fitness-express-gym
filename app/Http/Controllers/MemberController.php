@@ -15,9 +15,8 @@ class MemberController extends Controller
     public function index(Request $request)
     {
         $members = Member::when($request->filled('search'),function($query) use($request){
-            $query->where('id','name','LIKE','%'.$request->search.'%')->orWhere('id','email','LIKE','%'.$request->search.'%');
+            $query->where('name','LIKE','%'.$request->search.'%');
         })->get();
-        $members = Member::all();
         return view('home')->with('members', $members);
     }
 
@@ -39,8 +38,22 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:50',
+            'phone' => ['required', 'string', 'regex:/^(\+?880|0)1[3-9]\d{8}$/'],
+            'detail' => 'nullable',
+            'image' => 'nullable|mimes:jpeg,png,jpg|max:2048'
+        ]);
+        
+        
 
-        Member::create($request->post());
+        Member::create([
+            'name'=> $request->name,
+            'phone'=> $request->phone,
+            'detail'=> $request->detail,
+            'payment'=> 20,
+            'image'=> $request->image->store('member'),
+        ]);
         
         return redirect('/')->with('success','Member has been added successfully.');
     }
