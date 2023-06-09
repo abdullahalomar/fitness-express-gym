@@ -4,7 +4,7 @@
 <div class="container">
     <h2 class="text-center">Fitness Express Gym</h2>
     <div class="d-grid gap-2 col-6 mx-auto my-4">
-        <a href="{{ url('/create') }}" class="btn btn-success">ADD NEW MEMBER</a>
+        <a href="{{ url('member/create') }}" class="btn btn-success">ADD NEW MEMBER</a>
       </div>
       {{-- search --}}
       <nav class="navbar navbar-light bg-light">
@@ -17,17 +17,7 @@
         </div>
       </nav>
       {{-- search --}}
-      {{-- error message --}}
-      @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-      {{-- error message --}}
+
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -45,7 +35,7 @@
               @foreach ($members as $member)
               <tr>
                 <td>{{ $member->id }}</td>
-                <td><img src="{{Storage::url($member->image) }}" alt="Image" width="59px"></td>
+                <td><img src="{{Storage::url($member->image) }}" alt="Image" width="40" style="border-radius: 50%"></td>
                 <td>{{ $member->name }}</td>
                 <td>{{ $member->phone }}</td>
                 <td>{{ $member->detail }}</td>
@@ -53,8 +43,14 @@
 
                 <td>
                   <a href="{{ url('/member' , $member->id) }}"><button class="btn btn-outline-primary"><i class="fa-solid fa-eye"></i> Show</button></a>
-                  <a href=""><button class="btn btn-outline-info"><i class="fa-solid fa-user-pen"></i> Edit</button></a>
-                  <a href=""><button class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i> Delete</button></a>
+
+                  <a href="{{ route('member.edit', $member->id) }}"><button class="btn btn-outline-info"><i class="fa-solid fa-user-pen"></i> Edit</button></a>
+
+                  <form action="{{ route('member.destroy', $member->id) }}" method="post">
+                  @csrf
+                  @method('delete')
+                  <button onclick="return confirm('Are you sure?')" class="btn btn-outline-danger">Delete</button>
+                  </form>
                 </td>
               </tr>
               @endforeach

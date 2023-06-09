@@ -45,14 +45,12 @@ class MemberController extends Controller
             'image' => 'nullable|mimes:jpeg,png,jpg|max:2048'
         ]);
         
-        
-
         Member::create([
             'name'=> $request->name,
             'phone'=> $request->phone,
             'detail'=> $request->detail,
             'payment'=> 20,
-            'image'=> $request->image->store('member'),
+            'image'=> $request->image->store('member')
         ]);
         
         return redirect('/')->with('success','Member has been added successfully.');
@@ -77,7 +75,7 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        //
+        return view('edit', compact('member'));
     }
 
     /**
@@ -89,7 +87,21 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:50'.$member->id,
+            'phone' => ['required', 'string', 'regex:/^(\+?880|0)1[3-9]\d{8}$/'],
+            'detail' => 'nullable',
+            'image' => 'nullable|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        Member::updated([
+            'name'=> $request->name,
+            'phone'=> $request->phone,
+            'detail'=> $request->detail,
+            'payment'=> 20,
+            'image'=> $request->image->store('member')
+        ]);
+        return redirect('/');
     }
 
     /**
@@ -100,6 +112,7 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        //
+        $member->delete();
+        return redirect('/');
     }
 }

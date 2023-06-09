@@ -16,8 +16,9 @@
   @endif
         {{-- error message --}}
         
-        <form action="{{ url('member') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('member.update', $member->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('put')
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-6 mb-3">
                   <label for="exampleInputName" class="form-label">Name</label>
