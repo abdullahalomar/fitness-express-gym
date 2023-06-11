@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-use App\Http\Controllers\PhotoController;
- 
 Route::resource('member', MemberController::class);
+Route::resource('payment', PaymentController::class);
 Route::get('/', [App\Http\Controllers\MemberController::class, 'index']);

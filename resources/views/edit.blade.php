@@ -18,7 +18,7 @@
         
         <form action="{{ route('member.update', $member->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
-            @method('put')
+            @method('PUT')
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-6 mb-3">
                   <label for="exampleInputName" class="form-label">Name</label>
@@ -42,7 +42,7 @@
 
                 <div class="col-12 col-md-6 col-lg-6 mb-3">
                     <label for="exampleInputDetail" class="form-label">Address</label>
-                  <textarea class="form-control" value="{{ $member->detail }}" name="detail" id="detail" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  <textarea class="form-control" name="detail" id="detail" id="exampleFormControlTextarea1" rows="3">{{ $member->detail }}</textarea>
                 </div>
               </div>
 

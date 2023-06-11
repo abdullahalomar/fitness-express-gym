@@ -88,18 +88,23 @@ class MemberController extends Controller
     public function update(Request $request, Member $member)
     {
         $request->validate([
-            'name' => 'required|string|max:50'.$member->id,
-            'phone' => ['required', 'string', 'regex:/^(\+?880|0)1[3-9]\d{8}$/'],
+            'name' => 'required|string|max:50',
+            'phone' => 'required',
             'detail' => 'nullable',
             'image' => 'nullable|mimes:jpeg,png,jpg|max:2048'
         ]);
+        if($request->hasFile('image')){
+ 
+            $member->update([
+                'image'=> $request->image->store('member')
+            ]);
+        }
 
-        Member::updated([
+        $member->update([
             'name'=> $request->name,
             'phone'=> $request->phone,
             'detail'=> $request->detail,
-            'payment'=> 20,
-            'image'=> $request->image->store('member')
+            'payment'=> $request->payment,
         ]);
         return redirect('/');
     }

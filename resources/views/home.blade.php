@@ -50,11 +50,10 @@
                           
                         </div>
                         <div class="modal-body">
-                          <form action="">
+                          <form action="" method="post">
+                            @csrf
                             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
-                              <div class="col mb-3">
-                                <input type="number" value="{{ $member->id }}" name="id" id="id" class="form-control" placeholder="Id" aria-label="Id">
-                              </div>
+              
                               <div class="col mb-3">
                                 <input type="number" name="amount" id="amount" class="form-control" placeholder="Amount" aria-label="Amount">
                               </div>
@@ -71,6 +70,9 @@
                               </div>
                               <div class="col mb-3">
                                 <input type="date" name="date" id="date" class="form-control" placeholder="Date" aria-label="Date">
+                              </div>
+                              <div class="">
+                                <input type="hidden" value="{{ $member->id }}" name="id" id="id" class="form-control" placeholder="Id" aria-label="Id">
                               </div>
                             </div>
                             <div class="d-grid gap-2 mb-1">
