@@ -38,7 +38,8 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+    
+        $request->validate([ 
             'name' => 'required|string|max:50',
             'phone' => ['required', 'string', 'regex:/^(\+?880|0)1[3-9]\d{8}$/'],
             'detail' => 'nullable',

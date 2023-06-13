@@ -20,4 +20,5 @@ Auth::routes();
 
 Route::resource('member', MemberController::class);
 Route::resource('payment', PaymentController::class);
+Route::post('payment/{member}', [PaymentController::class,'store'])->name('payment.store');
 Route::get('/', [App\Http\Controllers\MemberController::class, 'index']);

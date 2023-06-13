@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('amount');
             $table->string('type');
-            $table->foreignId('member_id');
+            $table->foreignId('member_id')->nullable();
             $table->timestamp('date');
             $table->timestamps();
         });
