@@ -34,6 +34,7 @@
                     @foreach ($member->payments as $payment) 
                       <p>Type: {{ $payment->type }}</p>
                       <p>Date: {{ $payment->date->format('d M, Y')}}</p>
+                      <p>Amount: {{ $payment->amount}}</p>
                     @endforeach
                         
                   </div>
