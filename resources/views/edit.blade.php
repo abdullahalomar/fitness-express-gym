@@ -45,8 +45,11 @@
                   <textarea class="form-control" name="detail" id="detail" id="exampleFormControlTextarea1" rows="3">{{ $member->detail }}</textarea>
                 </div>
               </div>
-
-            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+              
+              <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-primary mb-3" type="submit">Button</button>
+              </div>
+            
           </form>
     </div>
 @endsection

@@ -3,9 +3,10 @@
 @section('content')
     <div class="container">
         <h2 class="text-center">Fitness Express Gym</h2>
-        <div class="d-grid gap-2 col-6 mx-auto my-4">
-            <a href="{{ url('member/create') }}" class="btn btn-success">ADD NEW MEMBER</a>
-        </div>
+        
+        <div class="d-grid gap-2 my-4">
+            <a href="{{ url('member/create') }}" class="btn btn-success">Add New Member</a>
+          </div>
         {{-- search --}}
         <nav class="navbar navbar-light bg-light">
             <div class="container-fluid">
@@ -116,16 +117,16 @@
 
                             <td>
                                 <a href="{{ url('/member', $member->id) }}"><button class="btn btn-outline-primary"><i
-                                            class="fa-solid fa-eye"></i> See</button></a>
+                                            class="fa-solid fa-eye"></i></button></a>
 
                                 <a href="{{ route('member.edit', $member->id) }}"><button class="btn btn-outline-info"><i
-                                            class="fa-solid fa-user-pen"></i> Edit</button></a>
+                                            class="fa-solid fa-user-pen"></i></button></a>
 
                                 <form action="{{ route('member.destroy', $member->id) }}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button onclick="return confirm('Are you sure?')" class="btn btn-outline-danger"><i
-                                            class="fa-solid fa-trash"></i> Delete</button>
+                                            class="fa-solid fa-trash"></i></button>
                                 </form>
                             </td>
                         </tr>

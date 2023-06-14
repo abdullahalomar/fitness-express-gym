@@ -2,21 +2,11 @@
 
 @section('content')
     <div class="container">
-        {{-- <div class="row px-3 py-3">
-            <div class="col-12 col-md-4 col-lg-4">
-                
-            </div>
-            <div class="col-12 col-md-4 col-lg-4">
-                <img src="{{ Storage::url($member->image) }}" width="100" style="border-radius: 10%" alt="">
-                <p>Id: {{ $member->id }}</p>
-                <p>Name: {{ $member->name }}</p>
-                <p>Phone: {{ $member->phone }}</p>
-                <p>Detail: {{ $member->detail }}</p>
-            </div>
-            <div class="col-12 col-md-4 col-lg-4">
-
-            </div>
-        </div> --}}
+        
+      <div>
+        <img src="{{ Storage::url($member->image) }}" class="img-fluid rounded img-thumbnail" alt="">
+      </div>
+      
         <div class="mb-3" style="max-width: 540px;">
             <div class="">
               <div></div>
