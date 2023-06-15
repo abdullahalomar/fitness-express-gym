@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container card">
-        <h2 class="text-center mb-4"><i class="fa-solid fa-user-pen"></i> Edit Member Details</h2>
+    <div class="container card border-0 shadow-lg">
+        <h2 class="text-center my-4"><i class="fa-solid fa-user-pen"></i> Edit Member Details</h2>
 
             {{-- error message --}}
       {{-- @if ($errors->any())
@@ -47,7 +47,7 @@
               </div>
               
               <div class="d-grid gap-2 col-6 mx-auto">
-                <button class="btn btn-primary mb-3" type="submit">Button</button>
+                <button class="btn btn-primary mb-3" type="submit">Save</button>
               </div>
             
           </form>

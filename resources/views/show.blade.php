@@ -2,38 +2,27 @@
 
 @section('content')
     <div class="container">
-        
-      <div>
-        <img src="{{ Storage::url($member->image) }}" class="img-fluid rounded img-thumbnail" alt="">
-      </div>
-      
-        <div class="mb-3" style="max-width: 540px;">
-            <div class="">
-              <div></div>
-              <div class="g-0">
-                <div class="col-md-4">
-                  <img src="{{ Storage::url($member->image) }}" class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">Name: {{ $member->name }}</h5>
-                    <p class="card-text">Id: {{ $member->id }}</p>
-                    <p class="card-text">Phone: {{ $member->phone }}</p>
-                    <p class="card-text">Detail: {{ $member->detail }}</p>
-   
-                    @foreach ($member->payments as $payment) 
-                      <p>Type: {{ $payment->type }}</p>
-                      <p>Date: {{ $payment->date->format('d M, Y')}}</p>
-                      <p>Amount: {{ $payment->amount}}</p>
-                    @endforeach
-                        
-                  </div>
-                </div>
-              </div>
-              <div></div>
-            </div>
+      <h2 class="text-center mb-5">Member Details</h2>
+      <div class="d-flex flex-wrap justify-content-evenly">
+        <div class="order-1">
+          <img src="{{ Storage::url($member->image) }}" class="img-fluid rounded img-thumbnail" width="250" alt="">
+          <h4 class="my-3"><i class="fa-solid fa-id-badge"></i> ID: {{ $member->id }}</h4>
+          <h5><i class="fa-solid fa-location-dot"></i> Address: {{ $member->detail }}</h5>
+        </div>
+        <div class="order-2">
+          
+          <div class="mt-4">
+            <h5 class="mb-3"><i class="fa-solid fa-file-signature"></i> Name: {{ $member->name }}</h5>
+          <h5 class="mb-3"><i class="fa-solid fa-phone"></i> Phone: {{ $member->phone }}</h5>
+
+          @foreach ($member->payments as $payment) 
+          <h5 class="mb-3"><i class="fa-solid fa-filter"></i> Reason: {{ $payment->type }}</h5>
+          <h5 class="mb-3"><i class="fa-solid fa-calendar-days"></i> Date: {{ $payment->date->format('d M, Y')}}</h5>
+          <h5 class=""><i class="fa-solid fa-bangladeshi-taka-sign"></i> Amount: <i class="fa-solid fa-bangladeshi-taka-sign"></i>{{ $payment->amount}}</h5>
+          @endforeach
           </div>
-        
+        </div>
+      </div>
     </div>
     
 @endsection

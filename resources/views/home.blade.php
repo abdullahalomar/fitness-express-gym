@@ -13,7 +13,7 @@
                 <form action="{{ url('/') }}" class="d-flex">
                     <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success me-2" type="submit">Search</button>
-                    <a href="{{ url('/') }}" class="btn btn-outline-warning">Reset</a>
+                    <a href="{{ url('/') }}" class="btn btn-outline-warning"><i class="fa-solid fa-arrows-rotate"></i></a>
                 </form>
             </div>
         </nav>
@@ -116,18 +116,26 @@
                             </td>
 
                             <td>
-                                <a href="{{ url('/member', $member->id) }}"><button class="btn btn-outline-primary"><i
+                                <div class="d-flex justify-content-evenly">
+                                    <div>
+                                        <a href="{{ url('/member', $member->id) }}"><button class="btn btn-outline-primary"><i
                                             class="fa-solid fa-eye"></i></button></a>
-
-                                <a href="{{ route('member.edit', $member->id) }}"><button class="btn btn-outline-info"><i
+                                    </div>
+    
+                                    <div>
+                                        <a href="{{ route('member.edit', $member->id) }}"><button class="btn btn-outline-info"><i
                                             class="fa-solid fa-user-pen"></i></button></a>
-
-                                <form action="{{ route('member.destroy', $member->id) }}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button onclick="return confirm('Are you sure?')" class="btn btn-outline-danger"><i
-                                            class="fa-solid fa-trash"></i></button>
-                                </form>
+                                    </div>
+    
+                                    <div>
+                                        <form action="{{ route('member.destroy', $member->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button onclick="return confirm('Are you sure?')" class="btn btn-outline-danger"><i
+                                                    class="fa-solid fa-trash"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
